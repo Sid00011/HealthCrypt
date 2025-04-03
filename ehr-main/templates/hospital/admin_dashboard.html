@@ -1,0 +1,184 @@
+{% extends 'hospital/admin_base.html' %}
+{% load static %}
+{% block content %}
+{%include 'hospital/admin_dashboard_cards.html'%}
+<br><br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mx-2">
+      <div class="modern-card">
+        <div class="modern-card-header">
+          <h5>Médecins Récents</h5>
+        </div>
+        <div class="modern-card-body">
+          <div class="table-container">
+            <table class="modern-table">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Service</th>
+                  <th>Téléphone</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              {% for d in doctors %}
+              <tr>
+                <td>{{d.get_name}}</td>
+                <td>{{d.department}}</td>
+                <td>{{d.mobile}}</td>
+                {%if d.status%}
+                <td><span class="status-badge status-active">Permanent</span></td>
+                {% else %}
+                <td><span class="status-badge status-pending">En Attente</span></td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5 mx-2">
+      <div class="modern-card">
+        <div class="modern-card-header header-patients">
+          <h5>Patients Récents</h5>
+        </div>
+        <div class="modern-card-body">
+          <div class="table-container">
+            <table class="modern-table">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Symptômes</th>
+                  <th>Téléphone</th>
+                  <th>Adresse</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              {% for p in patients %}
+              <tr>
+                <td>{{p.get_name}}</td>
+                <td>{{p.symptoms}}</td>
+                <td>{{p.mobile}}</td>
+                <td>{{p.address}}</td>
+                {%if p.status%}
+                <td><span class="status-badge status-active">Admis</span></td>
+                {% else %}
+                <td><span class="status-badge status-pending">En Attente</span></td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.modern-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.modern-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.modern-card-header {
+  background: linear-gradient(45deg, #4158D0, #C850C0);
+  color: white;
+  padding: 20px 25px;
+  position: relative;
+}
+
+.header-patients {
+  background: linear-gradient(45deg, #00B4DB, #0083B0);
+}
+
+.modern-card-header h5 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modern-card-body {
+  padding: 0;
+}
+
+.table-container {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.modern-table thead th {
+  background: #f8f9fa;
+  padding: 15px 20px;
+  font-weight: 600;
+  color: #495057;
+  border: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modern-table tbody tr {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.modern-table tbody tr:hover {
+  transform: scale(1.01);
+}
+
+.modern-table td {
+  padding: 15px 20px;
+  color: #495057;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.status-badge {
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-active {
+  background: linear-gradient(45deg, #00b09b, #96c93d);
+  color: white;
+}
+
+.status-pending {
+  background: linear-gradient(45deg, #FF416C, #FF4B2B);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    padding: 10px;
+  }
+  
+  .modern-table td, .modern-table th {
+    padding: 10px 15px;
+  }
+}
+</style>
+
+{% endblock content %}

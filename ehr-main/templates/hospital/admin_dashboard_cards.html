@@ -1,0 +1,137 @@
+{% extends 'hospital/admin_base.html' %}
+{% block content %}
+
+<head>
+  <meta charset="utf-8">
+  <title>Tableau de Bord Admin</title>
+
+  <style media="screen">
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%,rgb(32, 33, 35) 100%);
+      min-height: 100vh;
+    }
+
+    .market-updates {
+      padding: 2rem;
+      margin-top: 80px; /* Added margin to move cards down */
+      margin-bottom: 0px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2em;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+      z-index: 1;
+    }
+
+    .card-doctors {
+      background: linear-gradient(45deg, #4158D0, #C850C0);
+    }
+
+    .card-patients {
+      background: linear-gradient(45deg, #00B4DB, #0083B0);
+    }
+
+    .card-appointments {
+      background: linear-gradient(45deg, #FF416C, #FF4B2B);
+    }
+
+    .stat-number {
+      font-size: 3em;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-title {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.5em;
+      margin: 10px 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-subtitle {
+      color: rgba(255,255,255,0.8);
+      font-size: 1em;
+      margin: 5px 0;
+    }
+
+    .stat-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 4em;
+      color: rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover .stat-icon {
+      transform: translateY(-50%) scale(1.1);
+      color: rgba(255,255,255,0.3);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<div class="market-updates">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="stat-card card-doctors floating">
+        <h2 class="stat-number">{{doctorcount}}</h2>
+        <h3 class="stat-title">Médecins Total</h3>
+        <p class="stat-subtitle">En Attente d'Approbation: {{pendingdoctorcount}}</p>
+        <i class="fas fa-user-md stat-icon"></i>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card card-patients floating">
+        <h2 class="stat-number">{{patientcount}}</h2>
+        <h3 class="stat-title">Patients Total</h3>
+        <p class="stat-subtitle">Demandes d'Admission: {{pendingpatientcount}}</p>
+        <i class="fas fa-users stat-icon"></i>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card card-appointments floating">
+        <h2 class="stat-number">{{appointmentcount}}</h2>
+        <h3 class="stat-title">Rendez-vous Total</h3>
+        <p class="stat-subtitle">En Attente d'Approbation: {{pendingappointmentcount}}</p>
+        <i class="far fa-calendar-alt stat-icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

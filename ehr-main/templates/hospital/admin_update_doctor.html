@@ -1,0 +1,118 @@
+{% extends 'hospital/admin_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <style media="screen">
+    .update-form-container {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .form-header {
+      background: linear-gradient(45deg, #4158D0, #C850C0);
+      border-radius: 20px 20px 0 0;
+      padding: 25px;
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-content {
+      background: white;
+      border-radius: 0 0 20px 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-control {
+      border: 2px solid #eee;
+      border-radius: 10px;
+      padding: 12px 20px;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .form-control:focus {
+      border-color: #4158D0;
+      box-shadow: 0 0 0 0.2rem rgba(65, 88, 208, 0.25);
+    }
+
+    .form-control::placeholder {
+      color: #999;
+    }
+
+    .update-btn {
+      background: linear-gradient(45deg, #4158D0, #C850C0);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 35px;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 30px auto 0;
+    }
+
+    .update-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(65, 88, 208, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .update-form-container {
+        margin: 20px auto;
+      }
+      
+      .form-content {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<div class="update-form-container">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-header">
+      Mise à jour du profil médecin
+    </div>
+    <div class="form-content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            {% render_field userForm.first_name class="form-control" placeholder="Prénom" %}
+          </div>
+          <div class="form-group">
+            {% render_field userForm.last_name class="form-control" placeholder="Nom de famille" %}
+          </div>
+          <div class="form-group">
+            {% render_field doctorForm.department class="form-control" placeholder="Service médical" %}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            {% render_field userForm.password class="form-control" placeholder="Mot de passe" %}
+          </div>
+          <div class="form-group">
+            {% render_field doctorForm.profile_pic class="form-control" placeholder="Photo de profil" %}
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="update-btn">Enregistrer les modifications</button>
+    </div>
+  </form>
+</div>
+
+{% endblock content %}

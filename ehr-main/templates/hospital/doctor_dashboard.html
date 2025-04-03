@@ -1,0 +1,126 @@
+{% extends 'hospital/doctor_base.html' %}
+{% load static %}
+{% block content %}
+{%include 'hospital/doctor_dashboard_cards.html'%}
+<br><br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <div class="modern-card">
+        <div class="modern-card-header">
+          <h5>Rendez-vous Récents</h5>
+        </div>
+        <div class="modern-card-body">
+          <div class="table-container">
+            <table class="modern-table">
+              <thead>
+                <tr>
+                  <th>Nom du Patient</th>
+                  <th>Photo</th>
+                  <th>Description</th>
+                  <th>Téléphone</th>
+                  <th>Adresse</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              {% for a,p in appointments %}
+              <tr>
+                <td>{{a.patientName}}</td>
+                {% comment %} <td> <img src="{% static p.profile_pic.url %}" alt="Photo de Profil" height="40px" width="40px" /></td> {% endcomment %}
+                <td>{{a.description}}</td>
+                <td>{{p.mobile}}</td>
+                <td>{{p.address}}</td>
+                <td>{{a.appointmentDate}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.modern-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.modern-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.modern-card-header {
+  background: linear-gradient(45deg, #4158D0, #C850C0);
+  color: white;
+  padding: 20px 25px;
+  position: relative;
+}
+
+.modern-card-header h5 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modern-card-body {
+  padding: 0;
+}
+
+.table-container {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.modern-table thead th {
+  background: #f8f9fa;
+  padding: 15px 20px;
+  font-weight: 600;
+  color: #495057;
+  border: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modern-table tbody tr {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.modern-table tbody tr:hover {
+  transform: scale(1.01);
+}
+
+.modern-table td {
+  padding: 15px 20px;
+  color: #495057;
+  border: none;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    padding: 10px;
+  }
+  
+  .modern-table td, .modern-table th {
+    padding: 10px 15px;
+  }
+}
+</style>
+
+{% endblock content %}

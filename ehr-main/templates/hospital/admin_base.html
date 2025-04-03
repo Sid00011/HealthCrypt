@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Crypto Dossiers</title>
+
+  <!-- Bootstrap & Font Awesome -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+
+  <style media="screen">
+    :root {
+      --primary-gradient: linear-gradient(45deg, #6c5ce7, #a367dc);
+      --secondary-gradient: linear-gradient(135deg, #2d3436, #636e72);
+      --menu-bg: linear-gradient(180deg, #2d3436, #2d3436);
+      --accent-color: #a367dc;
+      --text-primary: #2d3436;
+      --text-secondary: #636e72;
+    }
+
+    body {
+      padding-left: 240px;
+      font-family: 'Raleway', sans-serif;
+      background: #f5f6fa;
+      color: var(--text-primary);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decorative shapes */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(108,92,231,0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -50%;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(163,103,220,0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    a {
+      color: white;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    a:hover {
+      color: rgba(255, 255, 255, 0.9);
+      transform: translateY(-3px);
+    }
+
+    .menu {
+      background: var(--menu-bg);
+      height: 100vh;
+      width: 240px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .menu .avatar {
+      background: rgba(255,255,255,0.05);
+      padding: 2.5em 0.5em;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu .avatar img {
+      width: 120px;
+      border-radius: 15px;
+      border: 4px solid var(--accent-color);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.4s ease;
+    }
+
+    .menu .avatar img:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .menu .avatar h2 {
+      color: white;
+      font-size: 1.4em;
+      margin-top: 1em;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .menu .avatar h6 {
+      color: var(--accent-color);
+      font-size: 1em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 0.5em;
+    }
+
+    .menu ul {
+      list-style: none;
+      padding: 1em 0;
+      margin: 0;
+    }
+
+    .menu ul li {
+      padding: 0.8em 1.5em;
+      margin: 0.7em 1em;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .menu ul li:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateX(8px);
+    }
+
+    .menu ul li a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    .menu ul li a i {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    .navbar {
+      background: var(--primary-gradient) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 1em 2em;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5em;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-item.nav-link {
+      padding: 0.6em 1.2em;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.1);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.nav-link:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: var(--secondary-gradient);
+      padding: 2em 0;
+      margin-top: 4em;
+    }
+
+    .footer-copyright {
+      text-align: center;
+      font-size: 1em;
+      color: white;
+      opacity: 0.9;
+    }
+
+    @media screen and (max-width: 900px) {
+      body {
+        padding-left: 90px;
+      }
+      
+      .menu {
+        width: 90px;
+      }
+
+      .menu .avatar h2,
+      .menu .avatar h6,
+      .menu ul li span {
+        display: none;
+      }
+
+      .menu .avatar img {
+        width: 50px;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      body {
+        padding-left: 0;
+      }
+
+      .menu {
+        transform: translateX(-100%);
+      }
+
+      .menu:focus {
+        transform: translateX(0);
+      }
+    }
+
+    /* Smooth animations */
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .menu ul li {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+      animation-delay: calc(0.1s * var(--i));
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <nav class="menu" tabindex="0">
+    <div class="smartphone-menu-trigger"></div>
+    <header class="avatar">
+      <img src="{% static "images/secretary.png" %}" alt="Secrétariat"/>
+      <h6>Secrétariat</h6>
+      <h2>{{request.user.first_name}}</h2>
+    </header>
+    <ul>
+      <li style="--i:1" tabindex="0">
+        <a href="/admin-dashboard"><i class="fa fa-tachometer"></i><span>Tableau de Bord</span></a>
+      </li>
+      <li style="--i:2" tabindex="0">
+        <a href="/admin-doctor"><i class="fa fa-user-md"></i><span>Médecins</span></a>
+      </li>
+      <li style="--i:3" tabindex="0">
+        <a href="/admin-patient"><i class="fa fa-users"></i><span>Patients</span></a>
+      </li>
+      <li style="--i:4" tabindex="0">
+        <a href="/admin-appointment"><i class="fa fa-calendar"></i><span>Rendez-vous</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="bs-example">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <a href="/admin-dashboard" class="navbar-brand">
+          <i class="fa fa-folder-open"></i> CRYPTO DOSSIERS
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav" style="margin-left: 90%;">
+            <a href="/logout" class="nav-item nav-link"><i class="fa fa-sign-out"></i> Déconnexion</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <br><br>
+
+    {% block content %}
+    {% endblock content %}
+
+    {% comment %} <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="footer-copyright">
+              <p><i class="fa fa-folder-open"></i> Système de Dossiers Cryptographiques</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer> {% endcomment %}
+
+  </main>
+
+</body>
+</html>

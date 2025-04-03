@@ -1,0 +1,97 @@
+{% extends 'hospital/homebase.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container py-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-body text-center p-5">
+      <div class="position-relative">
+        <div class="position-absolute top-0 start-50 translate-middle-x" style="z-index: 1;">
+          <div class="bg-gradient-circle"></div>
+          <div class="bg-gradient-circle-2"></div>
+        </div>
+        <h1 class="display-3 mb-4 fw-bold" style="background: linear-gradient(45deg, #2193b0, #6dd5ed); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Bienvenue vers la Cryptographie Sécurisée
+        </h1>
+        <p class="lead mb-4 text-secondary" style="font-size: 1.3rem;">
+          Système de gestion des dossiers patients électroniques avec sécurité renforcée
+        </p>
+        <div class="custom-shape-divider mb-5">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" style="fill: rgba(41, 128, 185, 0.1);"></path>
+          </svg>
+        </div>
+        <div class="d-grid gap-3 col-md-6 mx-auto">
+          <a href="/adminlogin" class="btn btn-lg position-relative overflow-hidden login-btn">
+            <span class="btn-gradient"></span>
+            <span class="position-relative">
+              <i class="fas fa-shield-alt me-2"></i>Connexion Sécurisée
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <style>
+        .bg-gradient-circle {
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, rgba(41, 128, 185, 0.1), rgba(109, 213, 237, 0.1));
+          filter: blur(40px);
+          top: -100px;
+          left: -150px;
+        }
+        
+        .bg-gradient-circle-2 {
+          position: absolute;
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, rgba(41, 128, 185, 0.1), rgba(109, 213, 237, 0.1));
+          filter: blur(30px);
+          top: 50px;
+          right: -100px;
+        }
+
+        .login-btn {
+          background: transparent;
+          border: 2px solid #2193b0;
+          color: #2193b0;
+          transition: all 0.3s ease;
+          border-radius: 30px;
+        }
+
+        .btn-gradient {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(45deg, #2193b0, #6dd5ed);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .login-btn:hover {
+          color: white;
+        }
+
+        .login-btn:hover .btn-gradient {
+          opacity: 1;
+        }
+
+        .custom-shape-divider {
+          overflow: hidden;
+          position: relative;
+          height: 50px;
+        }
+      </style>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

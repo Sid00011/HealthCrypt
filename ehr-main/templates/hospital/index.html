@@ -1,0 +1,147 @@
+{% extends 'hospital/homebase.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      top: -150px;
+      left: -150px;
+    }
+
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      bottom: -100px;
+      right: -100px;
+    }
+
+    .title-gradient {
+      background: linear-gradient(45deg, #fff, #e0e0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .custom-btn {
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin: 0 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-custom {
+      background: linear-gradient(45deg, #2193b0, #6dd5ed);
+      border: none;
+      color: white;
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline-custom {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-outline-custom:hover {
+      background: white;
+      color: #1e3c72;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .floating-cards {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .card-float {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+  </style>
+</head>
+
+<div class="hero-section">
+  <div class="hero-shape shape-1"></div>
+  <div class="hero-shape shape-2"></div>
+  
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h1 class="title-gradient">Gestion des Patients</h1>
+        <p class="subtitle">Système sécurisé de gestion des dossiers Patients électroniques</p>
+        
+        <div class="d-flex flex-wrap justify-content-start">
+          <a href="/adminclick" class="custom-btn btn-primary-custom me-3 mb-3">
+            <i class="fas fa-user-shield me-2"></i>Espace Admin
+          </a>
+          <a href="/doctorclick" class="custom-btn btn-outline-custom mb-3">
+            <i class="fas fa-user-md me-2"></i>Espace Médecin
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 d-none d-lg-block">
+        <div class="floating-cards">
+          <div class="card-float">
+            <i class="fas fa-shield-alt fa-2x mb-3"></i>
+            <h4>Sécurité Maximale</h4>
+            <p>Protection des données sensibles</p>
+          </div>
+          <div class="card-float">
+            <i class="fas fa-laptop-medical fa-2x mb-3"></i>
+            <h4>Interface Moderne</h4>
+            <p>Gestion simplifiée des dossiers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

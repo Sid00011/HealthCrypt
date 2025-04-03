@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EHR Management</title>
+
+  <!-- Modern UI Libraries -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2196F3;
+      --dark-color: #333;
+      --light-color: #f4f4f4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--light-color);
+      padding-left: 250px;
+      transition: padding-left 0.3s ease;
+    }
+
+    .menu {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .menu .avatar {
+      padding: 2rem 1rem;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .menu .avatar img {
+      width: 100px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .menu .avatar img:hover {
+      transform: scale(1.1);
+    }
+
+    .menu .avatar h2 {
+      color: white;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .menu ul {
+      list-style: none;
+      padding: 1rem 0;
+    }
+
+    .menu ul li {
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .menu ul li a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .menu ul li a i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .menu ul li:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+
+    .navbar {
+      background: white !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+    }
+
+    .navbar-brand {
+      color: var(--dark-color) !important;
+      font-weight: 600;
+    }
+
+    .nav-link {
+      color: var(--dark-color) !important;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color) !important;
+    }
+
+    .logout-btn {
+      background: var(--primary-color);
+      color: white !important;
+      padding: 0.5rem 1.5rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+      }
+
+      .menu {
+        transform: translateX(-100%);
+      }
+
+      .menu.active {
+        transform: translateX(0);
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="menu">
+    <div class="avatar fade-in">
+      <img src="https://via.placeholder.com/100" alt="Profile">
+      <h2>{{request.user.first_name}}</h2>
+    </div>
+    <ul>
+      <li>
+        <a href="/patient-dashboard">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="/patient-appointment">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Appointments</span>
+        </a>
+      </li>
+      <li>
+        <a href="/patient-view-doctor">
+          <i class="fas fa-user-md"></i>
+          <span>Doctors</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/patient-dashboard">EHR SYSTEM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link logout-btn" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5 pt-4">
+      {% block content %}
+      {% endblock content %}
+    </div>
+
+    <footer>
+      <div class="container">
+        <p class="mb-0">© 2023 EHR System. All rights reserved.</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modern JS Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Add smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.navbar-toggler');
+    const menu = document.querySelector('.menu');
+    
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+</body>
+
+</html>

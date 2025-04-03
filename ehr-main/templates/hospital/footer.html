@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(45deg, #2c3e50, #3498db);
+      color: #ffffff;
+      padding: 1.5rem 0;
+      box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ecf0f1;
+    }
+
+    .copyright {
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="#">À propos</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+    
+    <div class="copyright">
+      © 2023 Gestion des Dossiers Médicaux - Projet Cryptographie. Tous droits réservés.
+    </div>
+  </div>
+</footer>
+
+</html>
